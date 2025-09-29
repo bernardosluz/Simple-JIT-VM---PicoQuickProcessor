@@ -84,7 +84,7 @@ O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arqui
 ## 📝 Exemplo de Uso
 
 <details>
-<summary>Clique aqui para ver o arquivo de entrada de teste<\summary>
+<summary>Clique aqui para ver o arquivo de entrada de teste</summary>
 
 ```
 0x00 0x00 0x0D 0x00
@@ -111,7 +111,7 @@ O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arqui
 </details>
 
 <details>
-<summary>Clique aqui para ver o arquivo de saída de teste<\summary>
+<summary>Clique aqui para ver o arquivo de saída de teste</summary>
 
 ```
 0x0000->MOV_R0=0x0000000D
@@ -136,4 +136,4 @@ O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arqui
 [R0=0x0000000D,R1=0x00000000,R2=0x00000000,R3=0x000000D0,R4=0x00000000,R5=0x00000000,R6=0x00000000,R7=0x00000000,R8=0x00000000,R9=0x00000000,R10=0x00000000,R11=0x00000000,R12=0x00000000,R13=0x00000000,R14=0x00000000,R15=0x0000000D]
 ```
 
-<\details>
+</details>
