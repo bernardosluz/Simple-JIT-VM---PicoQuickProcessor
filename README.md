@@ -1,18 +1,18 @@
 # Simple JIT VM
 
-Um compilador Just-In-Time (JIT) simples para uma máquina virtual customizada de 16 registradores, implementado em C.
+Um compilador Just-In-Time (JIT) simples para uma máquina virtual customizada de 16 registradores, implementado em **C e C++**.
 
-Este projeto foi desenvolvido como trabalho final para a disciplina **Interface Hardware e Software** e implementa um processador hipotético chamado **PicoQuickProcessor (PQP)**. Ele demonstra os conceitos básicos da compilação JIT ao traduzir um bytecode customizado para código de máquina x86-64 nativo em tempo de execução.
+Este projeto foi desenvolvido para a disciplina **Interface Hardware e Software** e implementa um processador hipotético chamado **PicoQuickProcessor (PQP)**. Ele demonstra os conceitos básicos da compilação JIT ao traduzir um bytecode customizado para código de máquina x86-64 nativo em tempo de execução.
 
 Quando uma instrução é encontrada pela primeira vez, ela é compilada para código x86-64 executável e armazenada em cache. Chamadas subsequentes para a mesma instrução executarão o código nativo diretamente, evitando a sobrecarga da interpretação.
 
 ## ⚙️ Funcionalidades
 
-* **Compilação JIT:** Traduz o bytecode do PicoQuickProcessor para x86-64 nativo em tempo de execução.
-* **Máquina Virtual:** Uma VM simples com:
-    * 16 registradores de 32 bits de uso geral (R0-R15).
-    * 256 bytes de memória.
-* **Conjunto de Instruções:** Um conjunto customizado de 16 instruções, incluindo movimentação de dados, operações aritméticas, lógicas e saltos condicionais.
+  * **Compilação JIT:** Traduz o bytecode do PicoQuickProcessor para x86-64 nativo em tempo de execução.
+  * **Máquina Virtual:** Uma VM simples com:
+      * 16 registradores de 32 bits de uso geral (R0-R15).
+      * 256 bytes de memória.
+  * **Conjunto de Instruções:** Um conjunto customizado de 16 instruções, incluindo movimentação de dados, operações aritméticas, lógicas e saltos condicionais.
 
 ## 📜 Arquitetura do Conjunto de Instruções (ISA) - PicoQuickProcessor
 
@@ -37,35 +37,54 @@ A VM opera com instruções de 4 bytes de comprimento. O formato e as operaçõe
 | `0x0E` | `sal rx, i5` | Realiza um deslocamento aritmético para a esquerda em `rx` por um valor imediato de 5 bits. |
 | `0x0F` | `sar rx, i5` | Realiza um deslocamento aritmético para a direita em `rx` por um valor imediato de 5 bits. |
 
-<img width="880" height="738" alt="image" src="https://github.com/user-attachments/assets/39119451-e5bc-4ec6-9c37-4de6ede3ab80" />
-
+\<img width="880" height="738" alt="image" src="[https://github.com/user-attachments/assets/39119451-e5bc-4ec6-9c37-4de6ede3ab80](https://github.com/user-attachments/assets/39119451-e5bc-4ec6-9c37-4de6ede3ab80)" /\>
 
 ## 🚀 Como Compilar e Executar
 
 ### Pré-requisitos
-* Um compilador C (como o GCC).
-* Um sistema operacional baseado em Linux (devido ao uso de `sys/mman.h` e `unistd.h`).
+
+  * Um compilador C/C++ (como GCC/G++).
+  * Um sistema operacional baseado em Linux (devido ao uso de `sys/mman.h` e `unistd.h`).
 
 ### Compilação
-Compile o código-fonte usando o GCC:
+
+O projeto possui versões em C e C++. Escolha a opção de compilação desejada.
+
+**Opção 1: Compilar a versão em C**
+(Assumindo que o nome do arquivo é `simple_jit_pqp.c`)
+
 ```bash
-gcc -o jit_vm main.c
+gcc -o simple_jit_pqp simple_jit_pqp.c
 ```
+
+**Opção 2: Compilar a versão em C++**
+(Assumindo que o nome do arquivo é `simple_jit_pqp.cpp`)
+
+```bash
+g++ -std=c++11 -o simple_jit_pqp simple_jit_pqp.cpp
+```
+
+*Observação: A flag `-std=c++11` (ou mais recente) é recomendada para a versão em C++.*
 
 ### Execução
-O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arquivo de saída para o log de execução.
+
+O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arquivo de saída para o log de execução. A forma de executar é a mesma para ambas as versões.
 
 ```bash
-./jit_vm input.txt output.txt
+# Para a versão em C
+./simple_jit_pqp input.txt output.txt
+
+# Para a versão em C++
+./simple_jit_pqp input.txt output.txt
 ```
 
-* `input.txt`: Contém os valores hexadecimais do bytecode a ser executado.
-* `output.txt`: Onde o log da execução, os contadores de instruções e o estado final dos registradores serão salvos.
+  * `input.txt`: Contém os valores hexadecimais do bytecode a ser executado.
+  * `output.txt`: Onde o log da execução, os contadores de instruções e o estado final dos registradores serão salvos.
 
 ## 📝 Exemplo de Uso
 
-<details>
-<summary>Clique aqui para ver o arquivo de entrada de teste</summary>
+\<details\>
+\<summary\>Clique aqui para ver o arquivo de entrada de teste\</summary\>
 
 ```
 0x00 0x00 0x0D 0x00
@@ -88,10 +107,11 @@ O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arqui
 0x78 0x56 0x34 0x12
 0x39 0x30 0x00 0x00
 ```
-</details>
 
-<details>
-<summary>Clique aqui para ver o arquivo de saída de teste</summary>
+\</details\>
+
+\<details\>
+\<summary\>Clique aqui para ver o arquivo de saída de teste\</summary\>
 
 ```
 0x0000->MOV_R0=0x0000000D
@@ -115,4 +135,5 @@ O programa recebe dois argumentos: o arquivo de entrada com o bytecode e o arqui
 [00:1,01:1,02:1,03:1,04:1,05:2,06:1,07:1,08:1,09:1,0A:1,0B:1,0C:1,0D:1,0E:1,0F:1]
 [R0=0x0000000D,R1=0x00000000,R2=0x00000000,R3=0x000000D0,R4=0x00000000,R5=0x00000000,R6=0x00000000,R7=0x00000000,R8=0x00000000,R9=0x00000000,R10=0x00000000,R11=0x00000000,R12=0x00000000,R13=0x00000000,R14=0x00000000,R15=0x0000000D]
 ```
-</details>
+
+\</details\>
