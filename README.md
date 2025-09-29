@@ -37,7 +37,7 @@ A VM opera com instruções de 4 bytes de comprimento. O formato e as operaçõe
 | `0x0E` | `sal rx, i5` | Realiza um deslocamento aritmético para a esquerda em `rx` por um valor imediato de 5 bits. |
 | `0x0F` | `sar rx, i5` | Realiza um deslocamento aritmético para a direita em `rx` por um valor imediato de 5 bits. |
 
-\<img width="880" height="738" alt="image" src="[https://github.com/user-attachments/assets/39119451-e5bc-4ec6-9c37-4de6ede3ab80](https://github.com/user-attachments/assets/39119451-e5bc-4ec6-9c37-4de6ede3ab80)" /\>
+<img width="880" height="738" alt="Captura de tela de 2025-09-29 08-32-02" src="https://github.com/user-attachments/assets/82dddfa0-e1e8-40e4-b030-4d7a3c1a205f" />
 
 ## 🚀 Como Compilar e Executar
 
